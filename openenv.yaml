@@ -1,0 +1,51 @@
+name: data_clean_env
+version: "1.0.0"
+description: "Data Cleaning & Transformation Environment — train AI agents to clean dirty tabular datasets through iterative step/reset/state interactions"
+spec_version: 1
+
+client:
+  class_name: DataCleanEnv
+  module: client
+
+action:
+  class_name: DataCleanAction
+  module: models
+
+observation:
+  class_name: DataCleanObservation
+  module: models
+
+state:
+  class_name: DataCleanState
+  module: models
+
+default_image: data-clean-env:latest
+
+tags:
+  - openenv
+  - data-cleaning
+  - tabular
+  - real-world
+  - pandas
+  - multi-step
+
+tasks:
+  - id: easy
+    description: "Clean a 50-row employee records dataset"
+    difficulty: easy
+    max_steps: 15
+  - id: medium
+    description: "Fix a 100-row customer orders dataset"
+    difficulty: medium
+    max_steps: 15
+  - id: hard
+    description: "Reconcile a 150-row financial transactions dataset"
+    difficulty: hard
+    max_steps: 15
+
+endpoints:
+  reset: POST /reset
+  step: POST /step
+  state: GET /state
+  health: GET /health
+  tasks: GET /tasks
