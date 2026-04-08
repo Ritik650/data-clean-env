@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(PYTHONUTF8=1 python -m openenv push --repo-id Ritik1825/data-clean-env)",
+      "Bash(python -c \"import openenv; print\\(openenv.__file__\\)\")",
+      "Bash(pip show:*)",
+      "Bash(pip install:*)",
+      "Bash(python -m openenv push --repo-id Ritik1825/data-clean-env)",
+      "Bash(openenv push:*)",
+      "Bash(openenv --help)",
+      "Bash(PYTHONUTF8=1 openenv push --repo-id Ritik1825/data-clean-env)",
+      "Bash(huggingface-cli whoami:*)",
+      "Bash(python -c \"from huggingface_hub import HfApi; api = HfApi\\(\\); print\\(api.whoami\\(\\)\\)\")"
+    ]
+  }
+}
