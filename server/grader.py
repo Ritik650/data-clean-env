@@ -389,7 +389,7 @@ def grade_submission(
     # Guard: empty agent df
     if current_df is None or len(current_df) == 0:
         return {
-            "score": 0.0,
+            "score": 0.001,
             "completeness": 0.0,
             "accuracy": 0.0,
             "consistency": 0.0,
@@ -403,14 +403,14 @@ def grade_submission(
     consistency = consistency_fn(current_df)
     structure = _structure_score(current_df, clean_df, original_dup_count)
 
-    # Clamp all to [0, 1]
-    completeness = max(0.0, min(1.0, completeness))
-    accuracy = max(0.0, min(1.0, accuracy))
-    consistency = max(0.0, min(1.0, consistency))
-    structure = max(0.0, min(1.0, structure))
+    # Clamp all to (0.001, 0.999) — strictly exclusive of 0 and 1
+    completeness = max(0.001, min(0.999, completeness))
+    accuracy = max(0.001, min(0.999, accuracy))
+    consistency = max(0.001, min(0.999, consistency))
+    structure = max(0.001, min(0.999, structure))
 
     score = (0.25 * completeness + 0.25 * accuracy + 0.25 * consistency + 0.25 * structure)
-    score = max(0.0, min(1.0, score))
+    score = max(0.001, min(0.999, score))
 
     details = (
         f"Completeness: {completeness:.3f} | "

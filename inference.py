@@ -223,13 +223,13 @@ def run_task(client: OpenAI, task_id: str) -> None:
             if done:
                 break
 
-        score = float(obs.get("quality_score", 0.0))
-        score = max(0.0, min(1.0, score))
+        score = float(obs.get("quality_score", 0.001))
+        score = max(0.001, min(0.999, score))
         success = score >= 0.5
 
     except Exception as exc:
         print(f"[DEBUG] Task '{task_id}' failed: {exc}", flush=True)
-        score = 0.0
+        score = 0.001
         success = False
 
     finally:
